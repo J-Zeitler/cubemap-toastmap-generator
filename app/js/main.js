@@ -1,5 +1,7 @@
 "use strict";
 
+var urlParser = url;
+
 var canvasContainer = document.getElementById('canvas-container');
 var display = new PROJ.Display(canvasContainer);
 
@@ -82,24 +84,59 @@ var downloadToastMap = function () {
 
 var dragging = 0;
 
+var onImageLoaded = function (imageLoaded) {
+  if (imageLoaded) {
+    $.notify('Loaded new image!', 'success');
+  } else {
+    $.notify('Could not load image (probably due to cross-origin constraints)', 'error');
+  }
+  dragging = 0;
+  dropzone.classList.remove('active');
+}
+
+var setNewImage = function (url) {
+  var googleImageUrl = urlParser('?imgurl', url);
+  if (googleImageUrl) {
+    url = googleImageUrl;
+  }
+
+  var img = document.createElement('img');
+  img.crossOrigin = '';
+  img.onload = function () {
+    display.setEquirectImage(img);
+    rotationController.style.backgroundImage = ['url(', url, ')'].join('');
+    dragging = 0;
+    dropzone.classList.remove('active');
+    onImageLoaded(true);
+  }
+  img.onerror = function () {
+    onImageLoaded(false);
+  }
+  img.src = url;
+}
+
 var dropzone = document.getElementById('dropzone');
 var loadNewImage = function (event) {
   event.preventDefault();
   event.stopPropagation();
   var files = event.dataTransfer.files;
-  var items = event.dataTransfer.items
-  // console.log(items[0].getAsString('image/png'));
-  if (files.length) {
+  var items = event.dataTransfer.items;
+
+  if (files.length) { // Local file
     var reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = function () {
-      var img = document.createElement('img');
-      img.src = reader.result;
-      display.setEquirectImage(img);
-      rotationController.style.backgroundImage = ['url(', reader.result, ')'].join('');
-      dragging = 0;
-      dropzone.classList.remove('active');
+      setNewImage(reader.result);
     };
+  } else if (items && items.length) { // Chrome
+    items[0].getAsString(function (url) {
+      setNewImage(url);
+    });
+  } else if (event.dataTransfer.getData) { // FF
+    var url = event.dataTransfer.getData('text');
+    setNewImage(url);
+  } else {
+    onImageLoaded(false);
   }
 };
 

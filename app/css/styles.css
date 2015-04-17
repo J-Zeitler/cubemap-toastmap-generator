@@ -1,0 +1,137 @@
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+
+h1#page-title {
+  font-size: 30pt;
+}
+
+html, body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+}
+
+#controls {
+  height: 700px;
+  background: #f4f4f4;
+}
+
+#canvas-container {
+  height: 700px;
+  padding: 0;
+  border: none;
+}
+
+canvas {
+  border: none;
+  background: #fff;
+}
+
+#rotation-controller {
+  cursor: pointer;
+  height: 200px;
+
+  background-image: url('../textures/equirectangular-projection.jpg');
+  background-size: contain;
+
+  background-repeat: repeat-x;
+}
+
+#rotation-controller-degs {
+  cursor: pointer;
+  height: 30px;
+
+  background-image: url('../textures/deg-axis.png');
+  background-size: 100% 100%;
+  background-repeat: repeat-x;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+#dropzone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  opacity: 0.0;
+  z-index: 999;
+  visibility: hidden;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+#dropzone.active {
+  visibility: visible;
+  opacity: 0.8;
+  background-color: #fff;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+#dropzone-message {
+  left: 50%;
+  position: absolute;
+}
+
+#dropzone-message h1, #dropzone-message h2, #dropzone-message h3 {
+  left: -50%;
+  text-align: center;
+  margin-top: 20%;
+  position: relative;
+}
+
+#dropzone-message .dashbox {
+  left: -50%;
+  position: relative;
+  text-align: center;
+  border: 5px dashed #555;
+  width: 50rem;
+  height: 50rem;
+}
+
+/**
+ * Floater
+ */
+
+.floater-container {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+}
+
+.floater{
+  position: relative;
+  display: block;
+  margin-left: 75px;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+  z-index: 99;
+}
+
+.floater p {
+  font-family: 'Indie Flower';
+  font-size: 20pt;
+}
+
+.floater small {
+  font-family: 'Indie Flower';
+  font-size: 12pt;
+}
+
+.arrow .stem {
+  position: absolute;
+  margin: -30pt 0 0 70%;
+}
+
+.arrow .head {
+  position: absolute;
+  margin: -27pt 0 0 68%;
+  -webkit-transform: rotate(-40deg);
+          transform: rotate(-40deg);
+}

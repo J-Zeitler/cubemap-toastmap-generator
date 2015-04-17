@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cubemap and TOAST map generator</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/flat-ui.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body
+  ondrop="loadNewImage(event)"
+  ondragover="dragover(event)"
+  ondragenter="dragenter(event)"
+  ondragleave="dragleave(event)">
+
+
+<div id="floater-cont" class="floater-container">
+  <div class="floater">
+    <p>Drop a new image to load it</p>
+    <i class="arrow">
+      <p class="stem">)</p>
+      <p class="head">&lt;</p>
+    </i>
+  </div>
+</div>
+
+<div id="dropzone">
+  <div id="dropzone-message">
+    <h2>Drop image to load</h2>
+    <div class="dashbox"></div>
+  </div>
+</div>
+
+<div class="container">
+  <header class="page-header">
+    <h1 id="page-title">Cubemap and TOAST map Generator</h1>
+  </header>
+  <div class="row content">
+    <div id="controls" class="col-xs-4">
+      <div id="cubemap-controls" class="row">
+        <div class="col-xs-12">
+          <h4>Cubemap</h4>
+        </div>
+        <form id="cubemap-form" class="col-xs-12" action="javascript:downloadCubemap()">
+          <div class="form-group">
+            <label class="sr-only" for="cubemap-res">Resolution (in pixels/side)</label>
+            <div class="input-group">
+              <div class="input-group-addon">per face res.</div>
+              <input type="number" class="form-control" id="cubemap-res" placeholder="e.g. 256" value="256" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <button id="cubemap-button" type="submit" class="btn btn-primary">Download Cubemap (.zip)</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="toast-controls" class="row">
+        <div class="col-xs-12">
+          <h4>TOAST map</h4>
+        </div>
+        <form id="toast-form" class="col-xs-12" action="javascript:downloadToastMap()">
+          <div class="form-group">
+            <label class="sr-only" for="toast-res">Resolution (in pixels/side)</label>
+            <div class="input-group">
+              <div class="input-group-addon">res.</div>
+              <input type="number" class="form-control" id="toast-res" placeholder="e.g. 256" value="256" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <button id="toast-button" type="submit" class="btn btn-primary">Download TOAST map (.png)</button>
+          </div>
+        </form>
+      </div>
+      <div class="row" id="rotation-controls">
+        <div class="col-xs-12">
+          <p>Rotation (drag to rotate):</p>
+          <div
+            id="rotation-controller-degs"
+            class="col-xs-12"
+          ></div>
+          <div
+            id="rotation-controller"
+            class="col-xs-12"
+          ></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p><small>Made by <a href="https://github.com/J-Zeitler" target="_blank">J-Zeitler</a></small></p>
+        </div>
+      </div>
+    </div>
+    <div id="canvas-container" class="col-xs-8 nopadding"></div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/vendor/jquery.min.js"></script>
+
+<!-- File/Zip libs -->
+<script src="js/vendor/filesaver.min.js"></script>
+<script src="js/vendor/canvasToBlob.js"></script>
+<script src="js/vendor/jszip.min.js"></script>
+
+<!-- 3D libs -->
+<script src="js/vendor/three.min.js"></script>
+<script src="js/proj.js"></script>
+
+<!-- Entry point -->
+<script src="js/main.js"></script>
+
+</body>
+</html>

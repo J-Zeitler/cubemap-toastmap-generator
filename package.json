@@ -1,24 +1,24 @@
 {
-  "name": "equirectangular-to-cubemap",
+  "name": "cubemap-toastmap-generator",
   "version": "1.0.0",
-  "description": "three.js utils to project equiquadratic textures into cubemaps",
+  "description": "three.js utils to project equirectangular textures into cubemaps and TOAST maps",
   "main": "index.js",
   "directories": {
-    "example": "examples"
+    "example": "app"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/J-Zeitler/equiquadratic-to-cubemap.git"
+    "url": "https://github.com/J-Zeitler/cubemap-toastmap-generator.git"
   },
   "author": "Jonas Zeitler",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/J-Zeitler/equiquadratic-to-cubemap/issues"
+    "url": "https://github.com/J-Zeitler/cubemap-toastmap-generator/issues"
   },
-  "homepage": "https://github.com/J-Zeitler/equiquadratic-to-cubemap",
+  "homepage": "https://github.com/J-Zeitler/cubemap-toastmap-generator",
   "dependencies": {},
   "devDependencies": {
     "brfs": "^1.4.0",

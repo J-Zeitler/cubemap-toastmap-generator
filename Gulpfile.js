@@ -51,14 +51,11 @@ function bundle(bundler, dest, name) {
 function build() {
   bundle(bundler, './build', targetName);
 
-  // Ugly workaround
-  setTimeout(function () {
-    bundler.close();
+  bundler.close();
 
-    gulp.src('build/' + targetName)
-      .pipe(buffer())
-      .pipe(rename('proj.min.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest('./build'));
-  }, 500);
+  gulp.src('build/' + targetName)
+    .pipe(buffer())
+    .pipe(rename('proj.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./build'));
 }
